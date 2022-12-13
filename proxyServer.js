@@ -10,7 +10,7 @@ app.use(cors({
     origin: "*"
 }))
 
-const API_KEY = "RGAPI-33a2cf7f-74e4-4d0e-9e33-fb03222331f7"
+const API_KEY = "RGAPI-8081ea60-4c72-4a35-bd5e-ada30f794805"
 
 app.get("/playerData", async (req,res)=>{
     const playerName = req.query.username
@@ -18,17 +18,27 @@ app.get("/playerData", async (req,res)=>{
         'Accept-Encoding': 'identity',
       }})
     .then(response => {
-        console.log(response.data)
-        return response.data
+        res.json(response.data)
     }).catch(err=>err)
 })
+
+// app.get("/rankedData", async (req,res)=>{
+//     const playerName = req.query.username
+//     const PUUID = await getPlayerPUUID(playerName)
+//     axios.get("https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/" + PUUID +"?api_key=" + API_KEY, {headers: {
+//         'Accept-Encoding': 'identity',
+//       }})
+//     .then(response => {
+//         console.log(response.data)
+//         res.json(response.data)
+//     }).catch(err=>err)
+// })
 
 function getPlayerPUUID(playerName){
     return axios.get("https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + playerName +"?api_key=" + API_KEY, {headers: {
         'Accept-Encoding': 'identity',
       }})
     .then(response => {
-        console.log(response.data)
         return response.data.puuid
     }).catch(err=>err)
 }
@@ -42,8 +52,6 @@ app.get("/past5Games", async (req,res)=>{
       }})
     .then(response => response.data)
     .catch(err=>err)
-
-    console.log(gameIDs)
 
     const matchDataArray = []
 
