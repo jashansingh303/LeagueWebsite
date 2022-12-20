@@ -1,9 +1,11 @@
-function Home() {
-    return(
-        <div>
-            Hello World
-        </div>
-    )
-}
+const express = require("express")
+const router = express.Router()
 
-export default Home
+router.get("/", async (req, res) =>{
+    res.json({
+        status: 200,
+        message: "Sucess"
+    })
+})
+
+module.exports = router

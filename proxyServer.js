@@ -1,7 +1,7 @@
 var express = require("express")
 var cors = require("cors")
 const axios = require("axios")
-const home = require("/home")
+const home = require("./home")
 
 var app = express()
 
