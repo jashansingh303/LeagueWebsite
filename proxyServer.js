@@ -1,6 +1,7 @@
 var express = require("express")
 var cors = require("cors")
 const axios = require("axios")
+const home = require("/home")
 
 var app = express()
 
@@ -9,6 +10,8 @@ app.use(cors({
 }))
 
 const API_KEY = "RGAPI-dc705f89-df0b-47c6-8ac7-215d0a7d4351"
+
+app.use("/home", home)
 
 app.get("/playerData", async (req,res)=>{
     const playerName = req.query.username
